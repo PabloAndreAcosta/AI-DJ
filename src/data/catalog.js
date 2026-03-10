@@ -134,3 +134,33 @@ export function getGenres() {
 export function getTracksByGenre(genre) {
   return catalog.filter(t => t.genre === genre)
 }
+
+export function getArtists() {
+  return [...new Set(catalog.map(t => t.artist))].sort()
+}
+
+export function getTracksByArtist(artist) {
+  const lower = artist.toLowerCase()
+  return catalog.filter(t => t.artist.toLowerCase().includes(lower))
+}
+
+export function searchCatalog(query) {
+  const lower = query.toLowerCase()
+  return catalog.filter(t =>
+    t.title.toLowerCase().includes(lower) ||
+    t.artist.toLowerCase().includes(lower) ||
+    t.genre.toLowerCase().includes(lower)
+  )
+}
+
+let nextId = catalog.length + 1
+
+export function addTrackToCatalog(track) {
+  const newTrack = { id: nextId++, ...track }
+  catalog.push(newTrack)
+  return newTrack
+}
+
+export function addTracksToCatalog(tracks) {
+  return tracks.map(t => addTrackToCatalog(t))
+}
