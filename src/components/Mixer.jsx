@@ -82,6 +82,7 @@ function Deck({ label, track, volume, onVolumeChange, active, color, onLoadFromC
       </div>
       <Waveform active={active && !!track} color={color} />
       <div className="deck-info">
+        {track?.albumArt && <img src={track.albumArt} alt="" className="deck-album-art" />}
         <BpmRing bpm={track?.bpm} active={active} />
         <div className="deck-track-info">
           {track ? (
@@ -92,6 +93,7 @@ function Deck({ label, track, volume, onVolumeChange, active, color, onLoadFromC
                 <span className="tag">{track.key}</span>
                 <span className="tag">{track.genre}</span>
                 <span className="tag">E:{track.energy}</span>
+                {track.isSpotify && <span className="tag tag-spotify">Spotify</span>}
               </div>
             </>
           ) : (
