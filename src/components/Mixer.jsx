@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { bpmCompatible, keyCompatible } from '../data/catalog'
+import { bpmCompatible, keyCompatible, genreCompatible } from '../data/catalog'
 
 function Waveform({ active, color }) {
   const canvasRef = useRef(null)
@@ -122,6 +122,7 @@ export default function Mixer({ deckA, deckB, onLoadDeck }) {
 
   const bpmOk = deckA && deckB ? bpmCompatible(deckA.bpm, deckB.bpm) : null
   const keyOk = deckA && deckB ? keyCompatible(deckA.key, deckB.key) : null
+  const genreOk = deckA && deckB ? genreCompatible(deckA.genre, deckB.genre) : null
 
   return (
     <div className="mixer">
@@ -141,6 +142,9 @@ export default function Mixer({ deckA, deckB, onLoadDeck }) {
                 </div>
                 <div className={`compat-item ${keyOk ? 'compat-ok' : keyOk === null ? 'compat-unknown' : 'compat-warn'}`}>
                   KEY {keyOk ? '✓' : keyOk === null ? '?' : '✗'} ({deckA.key} → {deckB.key})
+                </div>
+                <div className={`compat-item ${genreOk ? 'compat-ok' : 'compat-warn'}`}>
+                  Genre {genreOk ? '✓' : '✗'} ({deckA.genre} → {deckB.genre})
                 </div>
                 <div className={`compat-item ${Math.abs(deckA.energy - deckB.energy) <= 3 ? 'compat-ok' : 'compat-warn'}`}>
                   Energy {Math.abs(deckA.energy - deckB.energy) <= 3 ? '✓' : '✗'} ({deckA.energy} → {deckB.energy})

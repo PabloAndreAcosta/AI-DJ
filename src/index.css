@@ -332,7 +332,21 @@ body {
 }
 
 .console-icon { font-size: 20px; }
-.console-header h3 { font-size: 16px; }
+.console-header h3 { font-size: 16px; flex: 1; }
+
+.console-genres {
+  font-size: 11px;
+  color: var(--text-dim);
+  background: var(--surface2);
+  padding: 4px 10px;
+  border-radius: 10px;
+}
+
+.console-hint {
+  margin-top: 8px;
+  color: var(--pink);
+  font-style: italic;
+}
 
 .console-history {
   flex: 1;

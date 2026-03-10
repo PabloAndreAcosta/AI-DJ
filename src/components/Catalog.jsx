@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { catalog, energyLabel } from '../data/catalog'
+import { catalog, energyLabel, getGenres } from '../data/catalog'
 
 export default function CatalogBrowser({ onLoadToDeck, onAddToSetlist }) {
   const [search, setSearch] = useState('')
   const [genreFilter, setGenreFilter] = useState('All')
 
-  const genres = ['All', ...new Set(catalog.map(t => t.genre))]
+  const genres = ['All', ...getGenres()]
 
   const filtered = catalog.filter(t => {
     const matchSearch = search === '' ||
