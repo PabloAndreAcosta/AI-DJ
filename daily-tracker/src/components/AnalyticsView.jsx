@@ -1,10 +1,10 @@
 import { useMemo } from 'react'
 
 const CATEGORIES = [
-  { id: 'health', label: 'Halsa', icon: '\uD83D\uDCAA', color: '#22c55e' },
+  { id: 'health', label: 'H\u00e4lsa', icon: '\uD83D\uDCAA', color: '#22c55e' },
   { id: 'energy', label: 'Energi', icon: '\u26A1', color: '#f59e0b' },
-  { id: 'sleep', label: 'Somn', icon: '\uD83D\uDE34', color: '#6366f1' },
-  { id: 'mood', label: 'Humor', icon: '\uD83D\uDE0A', color: '#ec4899' },
+  { id: 'sleep', label: 'S\u00f6mn', icon: '\uD83D\uDE34', color: '#6366f1' },
+  { id: 'mood', label: 'Hum\u00f6r', icon: '\uD83D\uDE0A', color: '#ec4899' },
   { id: 'productivity', label: 'Produktivitet', icon: '\uD83D\uDE80', color: '#06b6d4' },
 ]
 
@@ -26,7 +26,12 @@ export default function AnalyticsView({ entries }) {
     const overallAvg =
       Object.values(avgs).reduce((a, b) => a + b, 0) / CATEGORIES.length
 
-    const journalDays = dates.filter((d) => entries[d]?.journal?.length > 0).length
+    const journalDays = dates.filter((d) => {
+      const j = entries[d]?.journal
+      if (!j) return false
+      if (typeof j === 'string') return j.length > 0
+      return (j.gratitude?.length > 0) || (j.text?.length > 0)
+    }).length
     const streak = calculateStreak(dates)
 
     const trend = calculateTrend(entries, dates)
@@ -42,7 +47,7 @@ export default function AnalyticsView({ entries }) {
         </div>
         <div className="analytics-empty">
           <span className="empty-icon">{'\uD83D\uDCCA'}</span>
-          <p>Ingen data annu. Borja med att betygsatta din dag!</p>
+          <p>Ingen data \u00e4nnu. B\u00f6rja med att betygs\u00e4tta din dag!</p>
         </div>
       </div>
     )
@@ -149,7 +154,7 @@ export default function AnalyticsView({ entries }) {
                   ))}
                 </div>
                 <span className="history-avg">{avg > 0 ? avg.toFixed(1) : '-'}</span>
-                {entry?.journal && <span className="history-journal">{'\uD83D\uDCDD'}</span>}
+                {hasJournal(entry) && <span className="history-journal">{'\uD83D\uDCDD'}</span>}
               </div>
             )
           })}
@@ -157,6 +162,13 @@ export default function AnalyticsView({ entries }) {
       </div>
     </div>
   )
+}
+
+function hasJournal(entry) {
+  const j = entry?.journal
+  if (!j) return false
+  if (typeof j === 'string') return j.length > 0
+  return (j.gratitude?.length > 0) || (j.text?.length > 0)
 }
 
 function calculateStreak(dates) {

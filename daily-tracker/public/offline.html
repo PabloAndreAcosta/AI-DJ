@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#6366f1" />
+    <title>Offline - Daily Tracker</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        background: #0f0f1a;
+        color: #e8e8f0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+      }
+      .offline-container { text-align: center; max-width: 360px; }
+      .offline-icon { font-size: 56px; margin-bottom: 20px; opacity: 0.7; }
+      h1 {
+        font-size: 22px;
+        font-weight: 800;
+        background: linear-gradient(135deg, #6366f1, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 10px;
+      }
+      p { color: #8888aa; font-size: 14px; line-height: 1.6; margin-bottom: 24px; }
+      .retry-btn {
+        background: #6366f1;
+        color: white;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .retry-btn:active { background: #4f46e5; }
+    </style>
+  </head>
+  <body>
+    <div class="offline-container">
+      <div class="offline-icon">📡</div>
+      <h1>Du är offline</h1>
+      <p>Daily Tracker kunde inte ladda sidan. Appen fungerar bäst efter första besöket – då cachas allt automatiskt.</p>
+      <button class="retry-btn" onclick="window.location.reload()">Försök igen</button>
+    </div>
+  </body>
+</html>

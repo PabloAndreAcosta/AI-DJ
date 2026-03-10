@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import { formatDate } from '../lib/storage'
 
 const CATEGORIES = [
-  { id: 'health', label: 'Halsa', icon: '\uD83D\uDCAA', color: '#22c55e' },
+  { id: 'health', label: 'H\u00e4lsa', icon: '\uD83D\uDCAA', color: '#22c55e' },
   { id: 'energy', label: 'Energi', icon: '\u26A1', color: '#f59e0b' },
-  { id: 'sleep', label: 'Somn', icon: '\uD83D\uDE34', color: '#6366f1' },
-  { id: 'mood', label: 'Humor', icon: '\uD83D\uDE0A', color: '#ec4899' },
+  { id: 'sleep', label: 'S\u00f6mn', icon: '\uD83D\uDE34', color: '#6366f1' },
+  { id: 'mood', label: 'Hum\u00f6r', icon: '\uD83D\uDE0A', color: '#ec4899' },
   { id: 'productivity', label: 'Produktivitet', icon: '\uD83D\uDE80', color: '#06b6d4' },
 ]
 
