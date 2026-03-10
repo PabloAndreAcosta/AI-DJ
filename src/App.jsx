@@ -4,9 +4,6 @@ import AiConsole from './components/AiConsole'
 import Setlist from './components/Setlist'
 import CatalogBrowser from './components/Catalog'
 import SpotifySearch from './components/SpotifySearch'
-import InstallPrompt from './components/InstallPrompt'
-import OfflineIndicator from './components/OfflineIndicator'
-import UpdatePrompt from './components/UpdatePrompt'
 import { startSpotifyAuth, handleSpotifyCallback } from './lib/spotify'
 
 const TABS = [
@@ -18,27 +15,12 @@ const TABS = [
 ]
 
 export default function App() {
-  const [tab, setTab] = useState(() => {
-    const params = new URLSearchParams(window.location.search)
-    const t = params.get('tab')
-    return ['mixer', 'ai', 'setlist', 'catalog', 'spotify'].includes(t) ? t : 'mixer'
-  })
+  const [tab, setTab] = useState('mixer')
   const [deckA, setDeckA] = useState(null)
   const [deckB, setDeckB] = useState(null)
-  const [setlist, setSetlist] = useState(() => {
-    try {
-      const saved = localStorage.getItem('ai-dj-setlist')
-      return saved ? JSON.parse(saved) : []
-    } catch { return [] }
-  })
+  const [setlist, setSetlist] = useState([])
   const [spotifyToken, setSpotifyToken] = useState(null)
   const [spotifyUser, setSpotifyUser] = useState(null)
-
-  // Persist setlist to localStorage
-  useEffect(() => {
-    try { localStorage.setItem('ai-dj-setlist', JSON.stringify(setlist)) }
-    catch {}
-  }, [setlist])
 
   // Handle Spotify callback on load
   useEffect(() => {
@@ -112,9 +94,6 @@ export default function App() {
 
   return (
     <div className="app">
-      <OfflineIndicator />
-      <UpdatePrompt />
-      <InstallPrompt />
       <header className="app-header">
         <div className="logo">
           <span className="logo-icon">🎛</span>
