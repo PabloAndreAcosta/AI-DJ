@@ -2,3 +2,5 @@ node_modules
 dist
 .env
 *.local
+daily-tracker/node_modules/
+daily-tracker/dist/
