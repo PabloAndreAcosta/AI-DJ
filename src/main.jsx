@@ -12,6 +12,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 // Register service worker for PWA offline support
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(() => {})
+    navigator.serviceWorker
+      .register('/sw.js')
+      .then((registration) => {
+        // Check for updates periodically (every 60 minutes)
+        setInterval(() => {
+          registration.update()
+        }, 60 * 60 * 1000)
+      })
+      .catch(() => {})
   })
 }

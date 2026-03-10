@@ -3,6 +3,7 @@
   "short_name": "AI DJ",
   "description": "AI-driven DJ app for Kizomba and Latin/African dance music",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#0a0a0f",
   "theme_color": "#e91e63",
@@ -25,6 +26,26 @@
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Mixer",
+      "short_name": "Mixer",
+      "url": "/?tab=mixer",
+      "icons": [{ "src": "/icon-192.svg", "sizes": "192x192" }]
+    },
+    {
+      "name": "AI DJ Konsol",
+      "short_name": "AI DJ",
+      "url": "/?tab=ai",
+      "icons": [{ "src": "/icon-192.svg", "sizes": "192x192" }]
+    },
+    {
+      "name": "Katalog",
+      "short_name": "Katalog",
+      "url": "/?tab=catalog",
+      "icons": [{ "src": "/icon-192.svg", "sizes": "192x192" }]
     }
   ],
   "categories": ["music", "entertainment"],
